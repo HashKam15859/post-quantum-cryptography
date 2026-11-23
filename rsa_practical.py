@@ -10,7 +10,7 @@ PUBLIC_KEY_FILE = KEY_DIR / "public_key.pem"
 PRIVATE_KEY_FILE = KEY_DIR / "private_key.pem"
 
 
-# 1. Generate RSA Key Pair
+# generating RSA Key Pair
 def generate_keys():
 
     KEY_DIR.mkdir(exist_ok=True)
@@ -22,7 +22,7 @@ def generate_keys():
 
     public_key = private_key.public_key()
 
-    # Save public key
+    # save public key
     with open(PUBLIC_KEY_FILE, "wb") as file:
         file.write(
             public_key.public_bytes(
@@ -31,7 +31,7 @@ def generate_keys():
             )
         )
 
-    # Save private key
+    # save private key
     with open(PRIVATE_KEY_FILE, "wb") as file:
         file.write(
             private_key.private_bytes(
@@ -44,7 +44,7 @@ def generate_keys():
     print("RSA key pair generated and saved.")
 
 
-# 2. Load RSA Keys
+# load RSA Keys
 def load_keys():
 
     with open(PUBLIC_KEY_FILE, "rb") as file:
@@ -59,7 +59,7 @@ def load_keys():
     return public_key, private_key
 
 
-# 3. RSA Encryption
+# RSA Encryption
 def encrypt(message, public_key):
 
     ciphertext = public_key.encrypt(
@@ -74,7 +74,7 @@ def encrypt(message, public_key):
     return ciphertext
 
 
-# 4. RSA Decryption
+# RSA Decryption
 def decrypt(ciphertext, private_key):
 
     return private_key.decrypt(
@@ -87,7 +87,7 @@ def decrypt(ciphertext, private_key):
     ).decode("utf-8")
 
 
-# 5. Digital Signature Generation
+# Digital Signature generation
 def sign_message(message, private_key):
 
     signature = private_key.sign(
@@ -102,7 +102,7 @@ def sign_message(message, private_key):
     return signature
 
 
-# 6. Digital Signature Verification
+# Digital Signature verification
 def verify_signature(message, signature, public_key):
 
     try:
@@ -122,7 +122,7 @@ def verify_signature(message, signature, public_key):
         return False
 
 
-# 7. Main Execution
+# Main Execution
 def main():
 
     print("=" * 50)
